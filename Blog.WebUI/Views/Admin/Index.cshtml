@@ -1,0 +1,71 @@
+﻿@model Blog.WebUI.Models.AdminViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+<div>
+    <h3>Add article</h3>
+    @using (@Html.BeginForm("AddArticle", "Admin", FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.HiddenFor(model => model.articleDTO.ArticleId)
+            @Html.LabelFor(m => m.articleDTO.Name, "Title")
+            @Html.TextBoxFor(m => m.articleDTO.Name, new { @class = "form-control", @placeholder = "Enter article title", @pattern = "^[a-zA-ZА-я0-9ЁёІіЇїЄє\\s]+$" })
+            @Html.ValidationMessageFor(m => m.articleDTO.Name, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.articleDTO.Text, "Text")
+            @Html.TextAreaFor(m => m.articleDTO.Text, new { @class = "form-control", @placeholder = "Enter article text", @rows = "4", required = "required" })
+        </div>
+        <div class="form-group">
+            @Html.DropDownListFor(x => x.KeywordsList,
+                Model.Keywords.Select(x => new SelectListItem { Text = x.Name, Value = x.KeywordId.ToString() }),
+                new { @class = "form-control chosen-select", @multiple = true })
+        </div>
+        <input type="submit" class="btn btn-secondary btn-add" value="Add" />
+    }
+    <hr />
+</div>
+<div>
+    <h3>Add tag</h3>
+    @using (Html.BeginForm("AddTag", "Admin", FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.HiddenFor(model => model.Keyword.KeywordId)
+            @Html.LabelFor(m => m.Keyword.Name, "Tag name")
+            @Html.TextBoxFor(m => m.Keyword.Name, new { @class = "form-control", @placeholder = "Enter tag name", @pattern = "^[a-zA-ZА-я0-9ЁёІіЇїЄє\\s]+$", required = "required" })
+            @Html.ValidationMessageFor(m => m.Keyword.Name, "", new { @class = "text-danger" })
+        </div>
+        <input type="submit" class="btn btn-secondary btn-add" value="Add" />
+    }
+    <hr />
+</div>
+<div>
+    <h3>Delete article</h3>
+    @using (Html.BeginForm("DeleteArticle", "Admin", FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.DropDownListFor(x => x.ArticleList,
+                Model.Articles.Select(x => new SelectListItem { Text = x.Name, Value = x.ArticleId.ToString() }),
+                new { @class = "form-control chosen-select", @multiple = true })
+        </div>
+        <input type="submit" class="btn btn-secondary btn-add" value="Delete" />
+    }
+    <hr />
+</div>
+@*<h3>EditArticle</h3>
+    @using (Html.BeginForm("EditArticleForm", "Admin", FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.DropDownListFor(x => x.articleDTO.ArticleId,
+               Model.Articles.Select(x => new SelectListItem { Text = x.Name, Value = x.ArticleId.ToString() }),
+               new { @class = "form-control chosen-select" })
+        </div>
+        <input type="submit" class="btn btn-dark btn-add" value="Edit" />
+    }*@
+
+<script>
+    $('.chosen-select').chosen();
+</script>

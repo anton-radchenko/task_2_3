@@ -1,0 +1,22 @@
+﻿@model  IEnumerable<Blog.BLL.DTO.ArticleDTO>
+@{
+    ViewBag.Title = "FindArticles";
+}
+
+<h2>FindArticles</h2>
+<section class="articles">
+    @foreach (var item in Model)
+    {
+        <article class="card article-preview">
+            <div class="card-body ">
+                <h4 class="card-title">@item.Name</h4>
+                <p class="card-text">@item.PreviewText</p>
+                <a href="/Home/Article/@item.ArticleId" class="card-link btn btn-secondary">See more</a>
+            </div>
+            <div class="card-footer">
+                <p class="card-text"> @item.Date.ToShortDateString()</p>
+            </div>
+        </article>
+    }
+
+</section>

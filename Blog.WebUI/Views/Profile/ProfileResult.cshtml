@@ -1,0 +1,33 @@
+﻿@model Blog.Domain.Entities.User
+
+@{
+    ViewBag.Title = "ProfileResult";
+}
+
+<h2>ProfileResult</h2>
+<section>
+    <div class="card">
+        <div class="card-body">
+            <p>@Html.LabelFor(m => m.Name): @Model.Name</p>
+
+            <p>@Html.LabelFor(m => m.Surname): @Model.Surname</p>
+
+            <p>@Html.LabelFor(m => m.BirthDate): @Model.BirthDate.ToShortDateString()</p>
+
+            <p>@Html.LabelFor(m => m.Gender): @Model.Gender</p>
+
+            <p>@Html.LabelFor(m => m.Country): @Model.Country</p>
+
+            @Html.LabelFor(m => m.Languages)
+            <ul>
+                @foreach (var item in Model.Languages)
+                {
+                    <li>@item</li>
+                }
+            </ul>
+        </div>
+    </div>
+   
+</section>
+
+

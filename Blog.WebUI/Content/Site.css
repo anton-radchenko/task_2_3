@@ -1,0 +1,127 @@
+﻿* {
+    font-family: 'Lato', sans-serif;
+}
+body, html{
+    height: 100%;
+}
+input,
+select,
+textarea {
+    /*max-width: 400px;*/
+}
+
+.main {
+    padding: 15px;
+    background-color: #f2f2f2;
+    margin: 0 auto;
+    width: 80%;
+    min-height: 90vh;
+}
+
+.back-to-top {
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    bottom: 75px;
+    right: 25px;
+    display: none;
+    width: 50px;
+    height: 50px;
+}
+.aside-menu{
+    margin-bottom: 10px;
+}
+.article {
+    margin: 10px;
+}
+.article-preview {
+    margin: 10px;
+    width:400px;
+    height:400px;
+}
+.articles {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.btn-pages{
+    margin: 10px;
+}
+.reviews {
+    padding: 20px;
+}
+
+.card-review {
+    margin: 20px;
+}
+
+.register-form {
+    padding: 20px;
+}
+
+.btn-add {
+    width: 100px;
+}
+
+.error-template {
+    height:500px;
+    padding: 40px 15px;
+    text-align: center;
+}
+.error-template h1{
+    font-size: 80px;
+}
+.bg {
+    background-image: url(/Content/Images/not_found.jpg);
+    height: 800px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.error-actions {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.error-actions .btn {
+    margin-right: 10px;
+}
+
+.panel-body:not(.two-col) {
+    padding: 0px
+}
+
+.glyphicon {
+    margin-right: 5px;
+}
+
+.glyphicon-new-window {
+    margin-left: 5px;
+}
+
+.panel-body .radio, .panel-body .checkbox {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.panel-body .list-group {
+    margin-bottom: 0;
+}
+
+.margin-bottom-none {
+    margin-bottom: 0;
+}
+
+.panel-body .radio label, .panel-body .checkbox label {
+    display: block;
+}
+.footer {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+}

@@ -1,0 +1,53 @@
+﻿@model Blog.WebUI.Models.ReviewListViewModel
+@using Blog.WebUI.Helpers
+@{
+    ViewBag.Title = "Reviews";
+}
+
+<h2>Reviews</h2>
+
+<section class="reviews">
+    @foreach (var item in Model.Reviews)
+    {
+        <div class="card card-review">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
+                        <p class="text-secondary text-center">@item.Date.ToShortDateString()</p>
+                    </div>
+                    <div class="col-md-10">
+                        <a class="float-left"><strong>@item.Author</strong> </a>
+                        <div class="clearfix"></div>
+                        <p>@item.Text</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</section>
+<div class="btn-group btn-pages">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+</div>
+
+<section class="register-form">
+    <h3>Add review</h3>
+    @using (Html.BeginForm("Add", "Guest", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.Review.ReviewId)
+        <div class="form-group">
+            @Html.LabelFor(m => m.Review.Author, "Name")
+            @Html.TextBoxFor(m => m.Review.Author, new { @class = "form-control", @placeholder = "Enter your name", @pattern = "^[a-zA-ZА-я0-9ЁёІіЇїЄє]+$", required = "required" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Review.Text, "Review")
+            @Html.TextAreaFor(m => m.Review.Text, new { @class = "form-control", @placeholder = "Enter review text", @rows = "4", required = "required"})
+        </div>
+
+        <input type="submit" class="btn btn-secondary btn-add" value="Add" />
+    }
+</section>
+
+
+

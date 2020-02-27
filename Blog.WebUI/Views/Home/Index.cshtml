@@ -1,0 +1,57 @@
+﻿@model Blog.WebUI.Models.HomeViewModel
+@using Blog.WebUI.Helpers
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<h1>Home</h1>
+<section class="articles">
+    @foreach (var item in Model.Articles)
+    {
+        <article class="card article-preview">
+            <div class="card-body ">
+                <h4 class="card-title">@item.Name</h4>
+                <p class="card-text">@item.PreviewText</p>
+                <a href="/Home/Article/@item.ArticleId" class="card-link btn btn-secondary">See more</a>
+            </div>
+            <div class="card-footer">
+                <p class="card-text"> @item.Date.ToShortDateString()</p>
+
+            </div>
+        </article>
+    }
+    
+</section>
+<div class="btn-group btn-pages">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+</div>
+
+@section Poll{
+    @using (Html.BeginForm("Vote", "Home", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.Poll.PollId)
+
+        <div class="form-group">
+            @Model.Poll.Title
+        </div>
+
+        <div class="form-group">
+            @foreach (var item in Model.Poll.Answers)
+            {
+                @Html.RadioButton("vote", item.Text) @item.Text<br />
+            }
+        </div>
+
+        <input type="submit" class="btn btn-secondary btn-add" value="Add" />
+    }
+    <hr />
+    <p>@Model.Poll.Title</p>
+    @foreach (var item in Model.Poll.Answers)
+    {
+        <p>@item.Text: @item.Amount </p>
+
+    }
+}
+
+

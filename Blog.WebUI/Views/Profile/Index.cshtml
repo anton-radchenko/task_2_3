@@ -1,0 +1,81 @@
+﻿@using Blog.WebUI.Helpers
+@model Blog.Domain.Entities.User
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    var countries = new List<SelectListItem>(){
+         new SelectListItem(){Value="Ukraine",Text="Украина"},
+        new SelectListItem(){Value="Australia",Text="Австралия "},
+        new SelectListItem(){Value="Austria",Text="Австрия "},
+        new SelectListItem(){Value="Argentina",Text="Аргентина"},
+        new SelectListItem(){Value="Belarus",Text="Белоруссия "},
+        new SelectListItem(){Value="Belgium",Text="Бельгия"},
+        new SelectListItem(){Value="Bulgaria",Text="Болгария "},
+        new SelectListItem(){Value="Brazil",Text="Бразилия "},
+        new SelectListItem(){Value="Great Britain",Text="Великобритания"},
+        new SelectListItem(){Value="Germany",Text="Германия"},
+        new SelectListItem(){Value="China",Text="Китай"},
+        new SelectListItem(){Value="Latvia",Text="Латвия"},
+        new SelectListItem(){Value="Lithuania",Text="Литва"},
+        new SelectListItem(){Value="Norway",Text="Норвегия"},
+        new SelectListItem(){Value="Poland",Text="Польша"},
+        new SelectListItem(){Value="Portugal",Text="Португалия"},
+        new SelectListItem(){Value="Russia",Text="Россия"},
+        new SelectListItem(){Value="USA",Text="США"},
+        new SelectListItem(){Value="France",Text="Франция"},
+        new SelectListItem(){Value="Czech",Text="Чехия"},
+        new SelectListItem(){Value="Switzerland",Text="Швейцария "},
+        new SelectListItem(){Value="Sweden",Text="Швеция"},
+        new SelectListItem(){Value="Estonia",Text="Эстония"},
+        new SelectListItem(){Value="Japan",Text="Япония"}
+    };
+    var genders = new string[] { "Male", "Female", "Undefined", "Other" };
+    var languages = new string[] { "English", "Українська", "Русский", "Deutsch", "Other" };
+}
+
+<h2>Index</h2>
+<section>
+    @using (Html.BeginForm("ProfileResult", "Profile", FormMethod.Post))
+    {
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, "Name")
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Enter your name", @pattern = "^[a-zA-ZА-яЁёІіЇїЄє]+$" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Surname, "Surname")
+            @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", @placeholder = "Enter your surname", @pattern = "^[a-zA-ZА-яЁёІіЇїЄє]+$" })
+            @Html.ValidationMessageFor(m => m.Surname, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.BirthDate, "Date of birth")
+
+            @Html.EditorFor(m => m.BirthDate, new { htmlAttributes = new { @class = "form-control",@min = "1900-01-01", @max = "2020-01-01" } })
+            @Html.ValidationMessageFor(m => m.BirthDate, "", new { @class = "text-danger"})
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Gender, "Gender")
+            @Html.ListStringItems(genders, "radio", "gender")
+            @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
+
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Country, "Country")
+            @Html.DropDownList("country", countries)
+            @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Languages, "Languages")
+            @Html.EditorFor(m => m.Languages)
+            @Html.ListStringItems(languages, "checkbox", "languages", new { @class = "form-check"})
+
+        </div>
+        <input type="submit" class="btn btn-secondary btn-add" value="Confirm" />
+
+    }
+</section>

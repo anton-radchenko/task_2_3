@@ -1,0 +1,13 @@
+﻿@model Blog.BLL.DTO.ArticleDTO
+@{
+    ViewBag.Title = "EditArticle";
+}
+
+<h2>EditArticle</h2>
+@using (Html.BeginForm("EditArticle", "Admin", FormMethod.Post))
+{
+    @Html.EditorFor(m => m.Name);
+    @Html.EditorFor(m => m.Text);
+<input type="submit" class="btn btn-secondary btn-add" value="Save" />
+}
+
